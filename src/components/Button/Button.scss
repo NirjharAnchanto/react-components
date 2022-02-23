@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "../../styles/button/button" as *;
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+//  mixins
+
+@include button-type("super");
+@include button-type("primary");
+@include button-type("secondary");
+@include sizes-button("large");
+@include sizes-button("small");

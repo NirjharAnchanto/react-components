@@ -1,0 +1,152 @@
+//  Button-Common start
+.btn {
+  font-family: var(--global-body-FontFamily-medium) !important;
+  cursor: pointer;
+  font-size: var(--global-body-FontSize);
+  font-weight: normal;
+  letter-spacing: 0;
+  white-space: nowrap;
+  &:focus-visible {
+    outline: none;
+  }
+  border-radius: 8px;
+  line-height: 18px;
+
+  i {
+    font-size: var(--global-body-FontSize);
+    margin-right: 0.5em;
+    line-height: 5px;
+    &:disabled,
+    &:disabled:hover {
+      color: var(--global-disabled-TextColor);
+    }
+  }
+}
+
+//  Button-Common end
+
+// Button-Maps start
+$sizes-btn: (
+  "height": (
+    "large": 38px,
+    "small": 30px,
+  ),
+  "padding": (
+    "large": 0 16px,
+    "small": 0 12px,
+  ),
+);
+
+$values-btn: (
+  "bg-color": (
+    "super":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1) 0%,
+        var(--global-primary-color-2) 100%
+      ),
+    "primary":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1) 0%,
+        var(--global-primary-color-2) 100%
+      ),
+    "secondary": transparent,
+  ),
+  "hover-bg-color": (
+    "super":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1-var1) 0%,
+        var(--global-primary-color-2-var1) 100%
+      ),
+    "primary":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1-var1) 0%,
+        var(--global-primary-color-2-var1) 100%
+      ),
+    "secondary": var(--global-secondary-color-1),
+  ),
+  "active-bg-color": (
+    "super":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1-var2) 0%,
+        var(--global-primary-color-2-var2) 100%
+      ),
+    "primary":
+      linear-gradient(
+        270deg,
+        var(--global-primary-color-1-var2) 0%,
+        var(--global-primary-color-2-var2) 100%
+      ),
+    "secondary": transparent,
+  ),
+  "disabled-bg-color": (
+    "super": var(--global-disabled-BgColor),
+    "primary": var(--global-disabled-BgColor),
+    "secondary": transparent,
+  ),
+  "border": (
+    "super": inherit,
+    "primary": inherit,
+    "secondary": 1px solid var(--global-secondary-color-1),
+  ),
+  "text-color": (
+    "super": var(--global-color-1),
+    "primary": var(--global-color-1),
+    "secondary": var(--global-primary-color-1),
+  ),
+  "disabled-text-color": (
+    "super": var(--global-color-1),
+    "primary": var(--global-color-1),
+    "secondary": var(--global-disabled-TextColor),
+  ),
+);
+// Button-Maps end
+// Button-Mixins start
+
+@mixin button-type($type) {
+  .btn-#{$type} {
+    @extend .btn;
+    background: map-get($values-btn, bg-color, $type);
+    color: map-get($values-btn, text-color, $type);
+    border: map-get($values-btn, border, $type);
+    &:hover {
+      color: map-get($values-btn, text-color, $type);
+      background: map-get($values-btn, hover-bg-color, $type);
+    }
+    &:active {
+      color: map-get($values-btn, text-color, $type);
+      background: map-get($values-btn, active-bg-color, $type);
+    }
+    &:focus,
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+      border-radius: 8px;
+      background: map-get($values-btn, bg-color, $type);
+      color: map-get($values-btn, text-color, $type);
+      border: map-get($values-btn, border, $type);
+      box-shadow: 0 0 0 1px var(--global-color-1),
+        0 0 0 2.5px var(--global-box-shadow-color);
+    }
+    &:disabled,
+    &:disabled:hover {
+      border: map-get($values-btn, border, $type);
+      opacity: 1;
+      background: map-get($values-btn, disabled-bg-color, $type);
+      color: map-get($values-btn, disabled-text-color, $type);
+      pointer-events: all;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@mixin sizes-button($size) {
+  .btn-#{$size} {
+    height: map-get($sizes-btn, height, $size);
+    padding: map-get($sizes-btn, padding, $size);
+  }
+}
+//  Button-Mixins end

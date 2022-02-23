@@ -1,0 +1,52 @@
+@use "./variables" as *;
+
+.multiline {
+  display: -webkit-inline-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  border-radius: 5px;
+  width: 200px;
+}
+.singleline {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  border-radius: 5px;
+  width: 200px;
+}
+
+// basic tooltip designs
+.tooltipStyle {
+  max-width: 200px;
+  font-size: 14px !important;
+  text-decoration: none !important;
+}
+//Tooltip bootstrap design overrides
+
+.tooltip-inner {
+  //  tooltip inner portion styling
+  transform: $tooltip-position-down;
+  background-color: $tooltip-background-color !important;
+  color: $tooltip-color !important;
+  opacity: 1 !important;
+  padding: 10px 10px !important;
+}
+.tooltip.bs-tooltip-right .tooltip-arrow::before {
+  // right opening tooltip arrow
+}
+.tooltip.bs-tooltip-left .tooltip-arrow::before {
+  // left opening tooltip arrow
+}
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  // bottom opening tooltip arrow
+  transform: $tooltip-position-down;
+  border-bottom-color: gray !important;
+}
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  // top opening tooltip arrow
+}
